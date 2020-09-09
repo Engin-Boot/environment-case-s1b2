@@ -9,7 +9,7 @@ we install an environment monitoring device at the customer premises
 and monitor the data.
 
 This project is about simulating data from a monitoring device
-and issuing alerts and warnings.
+and issuing alerts and warnings.and
 
 ## Decomposition
 
