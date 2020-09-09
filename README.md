@@ -1,7 +1,7 @@
 # Environment Monitoring
 
 A sensitive healthcare equipment needs suitable operating conditions.
-The equipment's operating environment
+The equipment's operating environment 
 is the responsibility of the customer.
 
 To assist the customer in maintaining a suitable environment,
