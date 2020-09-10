@@ -1,0 +1,36 @@
+name: Build and Run
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: install cppcheck static analysis
+      run: sudo apt-get update && sudo apt-get install -y cppcheck
+      
+    - name: build
+      run: g++ -Wall -Wextra -Werror --coverage  -o Sender sender/sender.cpp
+    
+    - name: build
+      run: g++ -Wall -Wextra -Werror --coverage  -o Receiver receiver/receiver.cpp
+      
+    - name: static analysis
+      run: cppcheck --enable=all --error-exitcode=1 .
+      
+    - name: run
+      run: ./Sender | ./Receiver
+    
+    - name: coverage report sender
+      run: gcov -r sender/sender.cpp
+      
+    - name: coverage report Receiver
+      run: gcov -r receiver/receiver.cpp
