@@ -60,7 +60,7 @@ bool IsaNumber(string  columnData )
     }
    else
    {
-    for (int i=0;i<columnData.length();i++)
+    for (unsigned int i=0;i<columnData.length();i++)
     {
         if(isdigit (columnData[i])==false&&columnData[i]!='.')
         {
@@ -109,7 +109,7 @@ vector<vector <string> >processInvalidEntries(vector<vector <string> >& fetchedD
 }
 void printProcessedData(vector<vector <string> >& processedData)
 {
-    for (int i=0;i<processedData.size();i++)
+    for (unsigned int i=0;i<processedData.size();i++)
     {
         
            if (processedData[i][0]=="0"&&processedData[i][1]=="0")
