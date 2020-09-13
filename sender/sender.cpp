@@ -60,7 +60,7 @@ bool IsaNumber(string  columnData )
     }
    else
    {
-    for (int i=0;i<columnData.length();i++)
+    for (unsigned int i=0;i<columnData.length();i++)
     {
         if(isdigit (columnData[i])==false&&columnData[i]!='.')
         {
