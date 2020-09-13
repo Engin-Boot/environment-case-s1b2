@@ -81,8 +81,8 @@ vector<string> modifyInvalidData(vector<string>& data )
     }
     else
     {
-        rowVector.push_back("0");
-        rowVector.push_back("0");
+        rowVector.push_back("Invalid");
+        rowVector.push_back("Invalid");
     }
     
    return rowVector;
@@ -107,12 +107,20 @@ vector<vector <string> >processInvalidEntries(vector<vector <string> >& fetchedD
     }
     return processedEntries;
 }
+bool checkProcessedRowDataIsAInvalidEntry (vector<vector <string> >& row,int i)
+{
+    if(row[i][0]=="Invalid"&&row[i][1]=="Invalid")
+    {
+        return true;
+    }
+    return false;
+}
 void printProcessedData(vector<vector <string> >& processedData)
 {
-    for (int i=0;i<processedData.size();i++)
+    for (unsigned int i=0;i<processedData.size();i++)
     {
         
-           if (processedData[i][0]=="0"&&processedData[i][1]=="0")
+           if (checkProcessedRowDataIsAInvalidEntry(processedData,i))
            {
                 this_thread::sleep_for(chrono::seconds(10) );
            }
@@ -125,9 +133,6 @@ void printProcessedData(vector<vector <string> >& processedData)
           {
               cout<<processedData[i][j]<<",";
           }*/
-           
-        
-      cout<<endl;
     this_thread::sleep_for(chrono::seconds(5) );
     }
 }
