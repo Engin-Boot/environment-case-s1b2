@@ -57,6 +57,18 @@ bool FirstIsASpecialCharacter(string s)
     }
     return true;
 }
+bool stringIsNotAFloat(string s)
+{
+    for (unsigned int i=0;i<s.size();i++)
+    {
+        if (!isdigit(s[i])&&s[i]!='.')
+         {
+             return true;
+         }
+
+    }
+    return false;
+}
 bool IsaNumber(string  columnData )
 {
    
@@ -64,16 +76,9 @@ bool IsaNumber(string  columnData )
     {
         return false;
     }
-   else
+   else if (stringIsNotAFloat(columnData))
    {
-    for (unsigned int i=0;i<columnData.length();i++)
-    {
-        if(!isdigit(columnData[i])&&columnData[i]!='.')
-        {
-            return false;
-        }
-
-    }
+       return false;
    }
     return true;
 }
