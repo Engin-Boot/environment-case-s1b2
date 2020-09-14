@@ -4,41 +4,32 @@
 #include <sstream> 
 using namespace std;
 
-class AlertMessage
-{
-    public:
-    string RaiseAlert(string message,string valuename,string level)
-    {
-       string s;
-       s=message+"!!"+valuename+" is "+level;
-       return s;
-    }
-};
+
 class CheckValues
 {
-   private:
-   AlertMessage *alert;
+   
    public:
    CheckValues(){}
    string CheckValuesForAlert(float value,string ValueName,float HighValueForAlert,float HighValueForWarning,float LowValueForAlert,float LowValueForWarning)
   {
    
-     string s="";
+     string s="",alert="ALERT",warning="WARNING",veryhigh="very high";
+     string high="high",verylow="very low",low="low";
      if(value>HighValueForAlert)
-     {
-        s=alert->RaiseAlert("Alert",ValueName,"Very high");
+     {  
+        s="ALERT!!"+ValueName+" is "+"very high";
 	 }
 	 else if(value>HighValueForWarning)
 	 {
-	 	s=alert->RaiseAlert("Warning",ValueName,"high");
+	 	s="Warning!!"+ValueName+" is "+"high";
 	 }
 	 else if(value<LowValueForAlert)
 	 {
-	 	s=alert->RaiseAlert("Alert",ValueName,"very low");
+	 	s="ALERT!!"+ValueName+" is "+"very low";
 	 }
      else if(value<LowValueForWarning)
      {
-     	s=alert->RaiseAlert("Warning",ValueName,"low");
+     	s="Warning!!"+ValueName+" is "+"very low";
 	 }
      return s;
   }
@@ -47,7 +38,7 @@ class CheckValues
 class PrintMessage
 {   
     public:
-      void PrintMessageOnConsole(string messageForTem,string messageForHumi)
+      void PrintMessageOnConsole(string &messageForTem,string &messageForHumi)
         {
            cout<<messageForTem<<endl;
            cout<<messageForHumi<<endl;
