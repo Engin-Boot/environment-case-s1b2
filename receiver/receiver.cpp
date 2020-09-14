@@ -4,41 +4,43 @@
 #include <sstream> 
 using namespace std;
 
-class AlertMessage
-{
-    public:
-    string RaiseAlert(string message,string valuename,string level)
-    {
-       string s;
-       s=message+"!!"+valuename+" is "+level;
-       return s;
-    }
-};
+
 class CheckValues
 {
-   private:
-   AlertMessage *alert;
+   
    public:
    CheckValues(){}
-   string CheckValuesForAlert(float value,string ValueName,float HighValueForAlert,float HighValueForWarning,float LowValueForAlert,float LowValueForWarning)
+   string CheckValuesForAlert(float value,string &ValueName,float HighValueForAlert,float HighValueForWarning,float LowValueForAlert,float LowValueForWarning)
   {
-   
-     string s="";
-     if(value>HighValueForAlert)
-     {
-        s=alert->RaiseAlert("Alert",ValueName,"Very high");
-	 }
-	 else if(value>HighValueForWarning)
+      string s="";
+    if(value>HighValueForWarning)
+      s=checkforhighvalues(value,ValueName,HighValueForAlert,HighValueForWarning);
+    else
+       s=checkforlowvalues(value,ValueName,LowValueForAlert,LowValueForWarning);
+     return s;
+  }
+  string checkforlowvalues(float value,string &ValueName,float LowValueForAlert,float LowValueForWarning)
+  {   string s="";
+    if(value<LowValueForAlert)
 	 {
-	 	s=alert->RaiseAlert("Warning",ValueName,"high");
-	 }
-	 else if(value<LowValueForAlert)
-	 {
-	 	s=alert->RaiseAlert("Alert",ValueName,"very low");
+	 	s="ALERT!!"+ValueName+" is "+"very low";
 	 }
      else if(value<LowValueForWarning)
      {
-     	s=alert->RaiseAlert("Warning",ValueName,"low");
+     	s="Warning!!"+ValueName+" is "+"very low";
+	 }
+     return s;
+  }
+  string checkforhighvalues(float value,string &ValueName,float HighValueForAlert,float HighValueForWarning)
+  {
+     string s="";
+     if(value>HighValueForAlert)
+     {  
+        s="ALERT!!"+ValueName+" is "+"very high";
+	 }
+	 else if(value>HighValueForWarning)
+	 {
+	 	s="Warning!!"+ValueName+" is "+"high";
 	 }
      return s;
   }
@@ -47,7 +49,7 @@ class CheckValues
 class PrintMessage
 {   
     public:
-      void PrintMessageOnConsole(string messageForTem,string messageForHumi)
+      void PrintMessageOnConsole(string &messageForTem,string &messageForHumi)
         {
            cout<<messageForTem<<endl;
            cout<<messageForHumi<<endl;
@@ -69,10 +71,10 @@ class CheckForWarningAndAlert
     CheckForWarningAndAlert(){}
      CheckForWarningAndAlert(float tempreature,float humidity)
      {
-         
-     string messageForTem=check.CheckValuesForAlert(tempreature,"tempreature",ErrorHighValueForTem
+         string humidityname="humidity",tempreaturename="tempreature";
+     string messageForTem=check.CheckValuesForAlert(tempreature,tempreaturename,ErrorHighValueForTem
      ,WarningHighValueForTem,ErrorLowValueForTem,WarningLowValueFortem);
-     string messageForHumi=check.CheckValuesForAlert(humidity,"humidity",ErrorHighValueForHumi
+     string messageForHumi=check.CheckValuesForAlert(humidity,humidityname,ErrorHighValueForHumi
      ,WarningHighValueForHumi,0,0);
      print->PrintMessageOnConsole(messageForTem,messageForHumi);
      }
