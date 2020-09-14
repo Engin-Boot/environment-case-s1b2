@@ -76,7 +76,7 @@ class CheckForWarningAndAlert
 void extractValuesFromString(string line) 
 { 
     stringstream ss(line); 
-	float tempreature,humidity;     
+	float tempreature=0,humidity=0;     
      vector<float>v;
     string temp; 
     float IsAFloatValue; 
@@ -90,8 +90,8 @@ void extractValuesFromString(string line)
            }
         
         temp = ""; }
-         tempreature=v[0];
-         humidity=v[1];
+        // tempreature=v[0];
+        // humidity=v[1];
          
        CheckForWarningAndAlert obj(tempreature,humidity);
 } 
