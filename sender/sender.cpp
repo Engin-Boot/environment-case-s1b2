@@ -19,18 +19,18 @@ vector<vector <string> > CSVReader::readAndParse()
     string line ="";
     string data ="";
     file.open(fileName);
-     try{ if (!file) 
+     /*try{ if (!file) 
         {
             throw runtime_error("Could not open file");
         }
-     }
+     }*/
    
  
-    catch (std::exception &ex)
+   /* catch (std::exception &ex)
     {
        cout<<ex.what()<<endl;
        exit(0);
-    }
+    }*/
     
     
      while (getline(file, line))
