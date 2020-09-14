@@ -126,7 +126,7 @@ void printProcessedData(vector<vector <string> >& processedData)
            }
            else
            {
-               cout<<"Temperature:"+processedData[i][0]<<","<<"Humidity:"+processedData[i][1]<<endl;
+               cout<<processedData[i][0]<<" "<<processedData[i][1]<<endl;
            }
            
          /* for(int j=0;j<processedData[i].size();j++)
