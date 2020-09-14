@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 using namespace std;
-void readData(const string& path);
+vector <vector <string> >readData(const string& path);
 void printDataToConsole(vector<vector <string> >& );
 class CSVReader
 {

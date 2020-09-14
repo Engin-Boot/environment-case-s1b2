@@ -148,17 +148,19 @@ void printProcessedData(vector<vector <string> >& processedData)
     this_thread::sleep_for(chrono::seconds(5) );
     }
 }
-void readData(const string& filename)
+vector<vector <string> > readData(const string& filename)
 {
      CSVReader reader(filename,",");
      vector<vector <string> > fetchedData = reader.readAndParse();
-     vector<vector <string> > processedData = processInvalidEntries(fetchedData);
-     printProcessedData(processedData);
-   
+     //vector<vector <string> > processedData = processInvalidEntries(fetchedData);
+     //printProcessedData(processedData);
+    return fetchedData;
 }
 
 int main()
 {
-   readData("data.csv");
+  vector<vector<string>>fetchedData=readData("data.csv");
+  vector<vector<string>> processedData = processInvalidEntries(fetchedData);
+  printProcessedData(processedData);
    return 0;
 }
