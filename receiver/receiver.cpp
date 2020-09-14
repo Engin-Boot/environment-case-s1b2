@@ -17,7 +17,7 @@ class CheckForWarningAndAlert
      private:
       AlertMessage *alert;
     public:
-    CheckForWarningAndAlert(){}
+     CheckForWarningAndAlert(){}
     CheckForWarningAndAlert(float tempreature,float humidity)
      {
            
