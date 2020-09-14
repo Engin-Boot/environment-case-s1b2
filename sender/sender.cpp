@@ -49,10 +49,18 @@ vector<vector <string> > CSVReader::readAndParse()
    
    return dataList;
 }
+bool FirstIsASpecialCharacter(string s)
+{
+    if(isdigit(s[0]))
+    {
+        return false;
+    }
+    return true;
+}
 bool IsaNumber(string  columnData )
 {
-    int k = columnData.length();
-    if(k==1&&columnData[0]=='.')
+   
+    if(FirstIsASpecialCharacter(columnData))
     {
         return false;
     }
