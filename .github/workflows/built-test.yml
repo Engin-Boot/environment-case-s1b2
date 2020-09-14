@@ -30,8 +30,8 @@ jobs:
       run: ./Sender|./Receiver
     
     - name: coverage report sender
-      run: gcov -r sender/sender.cpp
+      run: gcov -r Sender.cpp
       
     - name: coverage report receiver
-      run: gcov -r receiver/receiver.cpp
+      run: gcov -r Receiver.cpp
 
