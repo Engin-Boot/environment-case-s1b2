@@ -10,11 +10,30 @@ class CheckValues
    
    public:
    CheckValues(){}
-   string CheckValuesForAlert(float value,string ValueName,float HighValueForAlert,float HighValueForWarning,float LowValueForAlert,float LowValueForWarning)
+   string CheckValuesForAlert(float value,string &ValueName,float HighValueForAlert,float HighValueForWarning,float LowValueForAlert,float LowValueForWarning)
   {
-   
-     string s="",alert="ALERT",warning="WARNING",veryhigh="very high";
-     string high="high",verylow="very low",low="low";
+      string s="";
+    if(value>HighValueForWarning)
+      s=checkforhighvalues(value,ValueName,HighValueForAlert,HighValueForWarning);
+    else
+       s=checkforlowvalues(value,ValueName,LowValueForAlert,LowValueForWarning);
+     return s;
+  }
+  string checkforlowvalues(float value,string &ValueName,float LowValueForAlert,float LowValueForWarning)
+  {   string s="";
+    if(value<LowValueForAlert)
+	 {
+	 	s="ALERT!!"+ValueName+" is "+"very low";
+	 }
+     else if(value<LowValueForWarning)
+     {
+     	s="Warning!!"+ValueName+" is "+"very low";
+	 }
+     return s;
+  }
+  string checkforhighvalues(float value,string &ValueName,float HighValueForAlert,float HighValueForWarning)
+  {
+     string s="";
      if(value>HighValueForAlert)
      {  
         s="ALERT!!"+ValueName+" is "+"very high";
@@ -22,14 +41,6 @@ class CheckValues
 	 else if(value>HighValueForWarning)
 	 {
 	 	s="Warning!!"+ValueName+" is "+"high";
-	 }
-	 else if(value<LowValueForAlert)
-	 {
-	 	s="ALERT!!"+ValueName+" is "+"very low";
-	 }
-     else if(value<LowValueForWarning)
-     {
-     	s="Warning!!"+ValueName+" is "+"very low";
 	 }
      return s;
   }
@@ -60,10 +71,10 @@ class CheckForWarningAndAlert
     CheckForWarningAndAlert(){}
      CheckForWarningAndAlert(float tempreature,float humidity)
      {
-         
-     string messageForTem=check.CheckValuesForAlert(tempreature,"tempreature",ErrorHighValueForTem
+         string humidityname="humidity",tempreaturename="tempreature";
+     string messageForTem=check.CheckValuesForAlert(tempreature,tempreaturename,ErrorHighValueForTem
      ,WarningHighValueForTem,ErrorLowValueForTem,WarningLowValueFortem);
-     string messageForHumi=check.CheckValuesForAlert(humidity,"humidity",ErrorHighValueForHumi
+     string messageForHumi=check.CheckValuesForAlert(humidity,humidityname,ErrorHighValueForHumi
      ,WarningHighValueForHumi,0,0);
      print->PrintMessageOnConsole(messageForTem,messageForHumi);
      }
