@@ -132,7 +132,7 @@ void printProcessedData(vector<vector <string> >& processedData)
           {
               cout<<processedData[i][j]<<",";
           }*/
-    this_thread::sleep_for(chrono::seconds(5) );
+    //this_thread::sleep_for(chrono::seconds(5) );
     }
 }
 void readData(const string& filename)
