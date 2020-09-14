@@ -7,9 +7,9 @@ using namespace std;
 class AlertMessage
 {
     public:
-    void RaiseAlert(string& message)
+    void RaiseAlert(string message,string ValueName,string level)
     {
-        cout<<message<<endl;
+        cout<<message<<"!! "<<ValueName<<" is "<<level<<endl;
     }
 };
 class CheckForWarningAndAlert
@@ -25,18 +25,13 @@ class CheckForWarningAndAlert
          AlertAndWarningForTempreature(tempreature);
      }
     void AlertAndWarningForHumidity(float humidity)
-    {    string message;
+    {    
        if(humidity>90)
-       {     
-           message="ERROR!!humidity is high";
-           alert->RaiseAlert(message);
+       {
+           alert->RaiseAlert("ERROR","humidity","high");
        }
        else if(humidity>70)
-       {
-
-       message="WARNING!!humidity is high";
-           alert->RaiseAlert(message);}
-
+       alert->RaiseAlert("WARNING","humidity","high");
     }
       void AlertAndWarningForTempreature(float tempreature)
    {    
@@ -48,62 +43,40 @@ class CheckForWarningAndAlert
    void  AlertForLowTempreature(float tempreature)
    {
        if(tempreature<0)
-       {
-           string message="ERROR!!tempreature is low";
-           alert->RaiseAlert(message);
-       }
+       alert->RaiseAlert("ERROR","Tempreature","very low");
        else
-       {
-           string message="WARNING!!humidity is low";
-           alert->RaiseAlert(message);
-       }
-   }
+        alert->RaiseAlert("WARNING","Tempreature","low");
+    }
     void AlertForHighTempreature(float tempreature)
     {
          if(tempreature>40)
-         {
-             string message="ERROR!!tempreature is very high";
-           alert->RaiseAlert(message);
-         }
+       alert->RaiseAlert("ERROR","Tempreature","very high");
        else
-       {
-           string message="WARNING!!Tempreature is high";
-           alert->RaiseAlert(message);
-       }
+        alert->RaiseAlert("WARNING","Tempreature","high");
     }
 };
 
 void extractValuesFromString(string line) 
 { 
     stringstream ss(line); 
-	float tempreature=0,humidity=0;     
-     vector<float>v;
-    string temp; 
-    float IsAFloatValue; 
-    while (!ss.eof()) { 
-  
-        ss >> temp; 
-           
-        if (stringstream(temp) >> IsAFloatValue) 
-           {
-                v.push_back(IsAFloatValue);
-           }
-        
-        temp = ""; }
-        // tempreature=v[0];
-        // humidity=v[1];
-         
-       CheckForWarningAndAlert obj(tempreature,humidity);
-} 
+        while(ss.good())
+         {
+         	string tempreaturestring,humiditystring;
+         	getline(ss,tempreaturestring,' ');
+         	getline(ss,humiditystring,'\n');
+         	//cout<<tempreaturestring<<" "<<humiditystring;
+        CheckForWarningAndAlert obj(stof(tempreaturestring),stof(humiditystring));
+          } 
+		 }
+       
 
  int main()
 {    
-    string line;
+    
+          string line="";
     while(getline(cin,line))
     {   
            extractValuesFromString(line);
     }
-    
-    
     return 0;
 }
