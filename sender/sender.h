@@ -9,7 +9,9 @@ class CSVReader
     string fileName;
     string delimeter;
 public:
-    CSVReader(const string& filename, const string& delim = ",") : fileName(filename), delimeter(delim) { }
+  
+   explicit CSVReader(const string& filename, const string& delim = ",") : fileName(filename), delimeter(delim) { }
+
     vector<vector <string> >readAndParse();
   
 };

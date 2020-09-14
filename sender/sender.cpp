@@ -62,7 +62,7 @@ bool IsaNumber(string  columnData )
    {
     for (unsigned int i=0;i<columnData.length();i++)
     {
-        if(isdigit (columnData[i])==false&&columnData[i]!='.')
+        if(!isdigit(columnData[i])&&columnData[i]!='.')
         {
             return false;
         }
@@ -88,11 +88,12 @@ vector<string> modifyInvalidData(vector<string>& data )
    return rowVector;
 }
 
-vector<vector <string> >processInvalidEntries(vector<vector <string> >& fetchedData)
+vector<vector <string> >processInvalidEntries(const vector<vector <string> >& fetchedData)
 {
     vector<vector <string> > processedEntries;
-    for  (std::vector<string> getRow:fetchedData)
+    for  (vector<string> getRow:fetchedData)
     {
+        
          vector<string> rowData = modifyInvalidData(getRow);
          if (rowData.size()==2)
          {
@@ -107,7 +108,7 @@ vector<vector <string> >processInvalidEntries(vector<vector <string> >& fetchedD
     }
     return processedEntries;
 }
-bool checkProcessedRowDataIsAInvalidEntry (vector<vector <string> >& row,int i)
+bool checkProcessedRowDataIsAInvalidEntry (const vector<vector <string> >& row,int i)
 {
     if(row[i][0]=="Invalid"&&row[i][1]=="Invalid")
     {
