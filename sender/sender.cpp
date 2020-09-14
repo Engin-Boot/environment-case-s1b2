@@ -49,7 +49,7 @@ vector<vector <string> > CSVReader::readAndParse()
    
    return dataList;
 }
-bool FirstIsASpecialCharacter(string s)
+bool FirstIsASpecialCharacter(string& s)
 {
     if(isdigit(s[0]))
     {
@@ -57,7 +57,7 @@ bool FirstIsASpecialCharacter(string s)
     }
     return true;
 }
-bool stringIsNotAFloat(string s)
+bool stringIsNotAFloat(string& s)
 {
     for (unsigned int i=0;i<s.size();i++)
     {
@@ -69,7 +69,7 @@ bool stringIsNotAFloat(string s)
     }
     return false;
 }
-bool IsaNumber(string  columnData )
+bool IsaNumber(string & columnData )
 {
    
     if(FirstIsASpecialCharacter(columnData))
