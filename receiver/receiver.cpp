@@ -98,14 +98,12 @@ void extractValuesFromString(string line)
 
  int main()
 {    
-   while(1)
-     {
-          string line;
+    string line;
     while(getline(cin,line))
     {   
            extractValuesFromString(line);
     }
-    }
+    
     
     return 0;
 }
