@@ -27,7 +27,7 @@ jobs:
       run: cppcheck --enable=all --suppress=missingIncludeSystem --error-exitcode=1 .
       
     - name: pipelining
-      run: ./sender|./receiver
+      run: ./Sender|./Receiver
     
     - name: coverage report sender
       run: gcov -r sender/sender.cpp
