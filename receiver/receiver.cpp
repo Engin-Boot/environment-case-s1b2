@@ -7,9 +7,9 @@ using namespace std;
 class AlertMessage
 {
     public:
-    void RaiseAlert(string message,string ValueName,string level)
+    void RaiseAlert(string& message)
     {
-        cout<<message<<"!! "<<ValueName<<" is "<<level<<endl;
+        cout<<message<<endl;
     }
 };
 class CheckForWarningAndAlert
@@ -25,13 +25,18 @@ class CheckForWarningAndAlert
          AlertAndWarningForTempreature(tempreature);
      }
     void AlertAndWarningForHumidity(float humidity)
-    {    
+    {    string message;
        if(humidity>90)
-       {
-           alert->RaiseAlert("ERROR","humidity","high");
+       {     
+           message="ERROR!!humidity is high";
+           alert->RaiseAlert(message);
        }
        else if(humidity>70)
-       alert->RaiseAlert("WARNING","humidity","high");
+       {
+
+       message="WARNING!!humidity is high";
+           alert->RaiseAlert(message);}
+
     }
       void AlertAndWarningForTempreature(float tempreature)
    {    
@@ -43,16 +48,28 @@ class CheckForWarningAndAlert
    void  AlertForLowTempreature(float tempreature)
    {
        if(tempreature<0)
-       alert->RaiseAlert("ERROR","Tempreature","very low");
+       {
+           string message="ERROR!!tempreature is low";
+           alert->RaiseAlert(message);
+       }
        else
-        alert->RaiseAlert("WARNING","Tempreature","low");
-    }
+       {
+           string message="WARNING!!humidity is low";
+           alert->RaiseAlert(message);
+       }
+   }
     void AlertForHighTempreature(float tempreature)
     {
          if(tempreature>40)
-       alert->RaiseAlert("ERROR","Tempreature","very high");
+         {
+             string message="ERROR!!tempreature is very high";
+           alert->RaiseAlert(message);
+         }
        else
-        alert->RaiseAlert("WARNING","Tempreature","high");
+       {
+           string message="WARNING!!Tempreature is high";
+           alert->RaiseAlert(message);
+       }
     }
 };
 
@@ -65,8 +82,8 @@ void extractValuesFromString(string line)
          	getline(ss,tempreaturestring,' ');
          	getline(ss,humiditystring,'\n');
          	//cout<<tempreaturestring<<" "<<humiditystring;
-        CheckForWarningAndAlert obj(stof(tempreaturestring),stof(humiditystring));
-          } 
+         		CheckForWarningAndAlert obj(stof(tempreaturestring),stof(humiditystring));
+} 
 		 }
        
 
