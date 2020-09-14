@@ -57,11 +57,11 @@ bool FirstIsASpecialCharacter(string& s)
     }
     return true;
 }
-bool stringIsNotAFloat(string& s)
+bool stringIsNotAInteger(string& s)
 {
     for (unsigned int i=0;i<s.size();i++)
     {
-        if (!isdigit(s[i])&&s[i]!='.')
+        if (!isdigit(s[i]))
          {
              return true;
          }
@@ -69,14 +69,14 @@ bool stringIsNotAFloat(string& s)
     }
     return false;
 }
-bool IsaNumber(string & columnData )
+bool IsaInteger(string & columnData )
 {
    
     if(FirstIsASpecialCharacter(columnData))
     {
         return false;
     }
-   else if (stringIsNotAFloat(columnData))
+   else if (stringIsNotAInteger(columnData))
    {
        return false;
    }
@@ -85,7 +85,7 @@ bool IsaNumber(string & columnData )
 vector<string> modifyInvalidData(vector<string>& data )
 {
     vector<string> rowVector;
-    if (IsaNumber(data[0])==true &&IsaNumber(data[1])==true)
+    if (IsaInteger(data[0])==true &&IsaInteger(data[1])==true)
     {
         rowVector.push_back(data[0]);
         rowVector.push_back(data[1]);
@@ -145,7 +145,7 @@ void printProcessedData(vector<vector <string> >& processedData)
           {
               cout<<processedData[i][j]<<",";
           }*/
-    //this_thread::sleep_for(chrono::seconds(5) );
+    this_thread::sleep_for(chrono::seconds(5) );
     }
 }
 void readData(const string& filename)
