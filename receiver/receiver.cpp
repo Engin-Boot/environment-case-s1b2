@@ -55,47 +55,36 @@ class CheckForWarningAndAlert
         alert->RaiseAlert("WARNING","Tempreature","high");
     }
 };
-void getvalue(vector<string>tempstring,vector<float>v)
-{      float tempreature,humidity;
-     if(tempstring[0].compare("tempreature"))
-        {tempreature=v[0];
-        humidity=v[1];}
-        else
-         {
-             humidity=v[0];
-             tempreature=v[1];
-         }
-     CheckForWarningAndAlert AlertAndWarningForAll(tempreature,humidity);
-}
+
 void extractValuesFromString(string line) 
 { 
-    stringstream ss(line);      
+    stringstream ss(line); 
+	float tempreature,humidity;     
      vector<float>v;
-     vector<string>tempstring;
     string temp; 
-    float found; 
+    float IsAFloatValue; 
     while (!ss.eof()) { 
   
         ss >> temp; 
            
-        if (stringstream(temp) >> found) 
+        if (stringstream(temp) >> IsAFloatValue) 
            {
-                v.push_back(found);
+                v.push_back(IsAFloatValue);
            }
-          else
-             {
-                 tempstring.push_back(temp);
-             }
+        
         temp = ""; }
-        getvalue(tempstring,v);
-       
+         tempreature=v[0];
+         humidity=v[1];
+         
+       CheckForWarningAndAlert obj(tempreature,humidity);
 } 
 
  int main()
 {    
-     string line;
-    while(getline(cin,line))
-    {   
+    
+    while(1)
+    {     string line;
+         getline(cin,line);
            extractValuesFromString(line);
     }
     return 0;
