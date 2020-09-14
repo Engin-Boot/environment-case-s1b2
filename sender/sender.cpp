@@ -19,20 +19,6 @@ vector<vector <string> > CSVReader::readAndParse()
     string line ="";
     string data ="";
     file.open(fileName);
-     /*try{ if (!file) 
-        {
-            throw runtime_error("Could not open file");
-        }
-     }*/
-   
- 
-   /* catch (std::exception &ex)
-    {
-       cout<<ex.what()<<endl;
-       exit(0);
-    }*/
-    
-    
      while (getline(file, line))
     {
        stringstream str(line);
@@ -106,15 +92,9 @@ vector<vector <string> >processInvalidEntries(const vector<vector <string> >& fe
     {
         
          vector<string> rowData = modifyInvalidData(getRow);
-         if (rowData.size()==2)
-         {
-              processedEntries.push_back(rowData);
-         }
-         else
-         {
-             cout<<"Data Missing"<<endl;
-             exit(0);
-         }
+         processedEntries.push_back(rowData);
+         
+       
          
     }
     return processedEntries;
