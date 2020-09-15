@@ -21,7 +21,11 @@ public:
   
 };
 
-
+void displayNoFileError(exception &ex)
+{
+    cout<<ex.what()<<endl;
+       exit(0);
+}
 
 vector<vector <string> > CSVReader::openAndRead()
 {
@@ -41,11 +45,6 @@ vector<vector <string> > CSVReader::openAndRead()
                   rowData.clear();
                   rowData =parseLine(str);
                   dataList.push_back(rowData);
-                                                                          /* while (getline(str, data, ','))
-                                                                             {
-                                                                                      rowData.push_back(data);
-                                                                            }*/
-                                                                            
                                                                             
 
             }
@@ -59,10 +58,9 @@ vector<vector <string> > CSVReader::openAndRead()
         }
         
     }
-    catch (std::exception &ex)
+    catch (exception &ex)
     {
-       cout<<ex.what()<<endl;
-       exit(0);
+       displayNoFileError(ex);
     }
         file.close();
    
