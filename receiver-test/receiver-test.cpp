@@ -6,7 +6,7 @@
 using namespace std;
 
 CheckValues check;
-string tempreature="tempreature",humidity=humidity;
+string tempreature="tempreature",humidity="humidity";
 TEST_CASE("raise error and warning when tempreature is greater than alert level")
 {   
     REQUIRE(check.checkforhighvalues(42,tempreature,40,37)==("ALERT!!tempreature is very high"));
