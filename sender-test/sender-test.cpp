@@ -26,5 +26,5 @@ TEST_CASE("for checkProcessedRowDataIsAInvalidEntry")
 TEST_CASE("for processInvalidEntries")
 {   vector<vector <string> >fetchedData={{"67","45"},{"98.45","23"},{"89","@3"}};
     vector<vector <string> > expectedData= {{"67","45"},{"98.45","23"},{"Invalid","Invalid"}};
-    REQUIRE(processInvalidEntries(fetchedData)==expectedData);
+    REQUIRE(processTheEntries(fetchedData)==expectedData);
 }

@@ -16,7 +16,7 @@ void printProcessedData(vector<vector <string> >& processedData)
            if (checkProcessedRowDataIsAInvalidEntry(processedData,i))
            {
 
-                this_thread::sleep_for(chrono::seconds(0) );
+                this_thread::sleep_for(chrono::seconds(5) );
            }
            else
            {
