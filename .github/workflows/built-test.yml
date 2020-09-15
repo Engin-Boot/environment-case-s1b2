@@ -33,7 +33,7 @@ jobs:
       run: g++ -Wall -Wextra --coverage -o Receiver-test receiver-test/receiver-test.cpp receiver/receiver.cpp
       
     - name: run receiver test
-      run: ./receiver-test
+      run: ./Receiver-test
       
     - name: coverage report sender
       run: gcov -r sender.cpp
