@@ -28,10 +28,15 @@ jobs:
       
     - name: pipelining
       run: ./Sender|./Receiver
+    - name: build sender-test
+      run:  g++ -Wall -Wextra --coverage -o Sender-test sender_test/sender-test.cpp sender/sender.cpp
       
     - name: build receiver-test
       run: g++ -Wall -Wextra --coverage -o Receiver-test receiver-test/receiver-test.cpp receiver/receiver.cpp
       
+    - name: run sender test
+      run: ./Sender-test
+        
     - name: run receiver test
       run: ./Receiver-test
       
