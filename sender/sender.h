@@ -31,17 +31,32 @@ bool FirstIsASpecialCharacter(string& s)
     }
     return true;
 }
-bool IsNotADot(list<char>& receivedlist)
+
+bool IsNotADot(list<char>& dotlist)
 {
-    auto itr = receivedlist.begin();
+    auto itr = dotlist.begin();
     char dot=*itr;
-    bool k = true;
     if (dot=='.')
     {
-       k=false;
+        return false;
     }
-    return k;
+    return true;
 }
+
+bool checkForOtherSize(list<char>& receivedlist)
+{
+    if (receivedlist.size()==0)
+    {
+        return false;
+    }
+    else
+    {
+        return IsNotADot(receivedlist);
+    }
+    
+}
+
+
 bool hasSpecialCharacterInBetween(string& s)
 {
     list<char> temp;
@@ -56,11 +71,11 @@ bool hasSpecialCharacterInBetween(string& s)
     {
         return true;
     }
-    else if(temp.size()==1)
+    else 
     {
-        return IsNotADot(temp);
+        return checkForOtherSize(temp);
     }
-    return false;
+   
    
 }
 bool IsaFloat(string & columnData )
