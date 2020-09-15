@@ -33,7 +33,8 @@ vector<vector <string> > CSVReader::openAndRead()
     //try 
     //{
     if(file)
-    {    
+    {     
+        getline(file,line)
      while (getline(file, line))
         {
             stringstream str(line);
