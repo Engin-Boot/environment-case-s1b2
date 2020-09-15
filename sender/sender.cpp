@@ -1,132 +1,12 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <string>
-#include<sstream>
-#include<exception>
 #include <algorithm>
 #include "sender.h"
 #include<chrono>
-#include<stdexcept>
 #include<thread>
-#include<cmath>
+#include "CSVReader.h"
 using namespace std;
 
-vector<vector <string> > CSVReader::readAndParse()
-{
-    fstream file;
-    vector<vector <string> > dataList;
-    string line ="";
-    string data ="";
-    file.open(fileName);
-     /*try{ if (!file) 
-        {
-            throw runtime_error("Could not open file");
-        }
-     }*/
-   
- 
-   /* catch (std::exception &ex)
-    {
-       cout<<ex.what()<<endl;
-       exit(0);
-    }*/
-    
-    
-     while (getline(file, line))
-    {
-       stringstream str(line);
-       vector<string> rowData;
-        while (getline(str, data, ','))
-        {
-            rowData.push_back(data);
-        }
-        dataList.push_back(rowData);
-
-    }
-
-    file.close();
-   
-   return dataList;
-}
-bool FirstIsASpecialCharacter(string& s)
-{
-    if(isdigit(s[0]))
-    {
-        return false;
-    }
-    return true;
-}
-bool stringIsNotAInteger(string& s)
-{
-    for (unsigned int i=0;i<s.size();i++)
-    {
-        if (!isdigit(s[i]))
-         {
-             return true;
-         }
-
-    }
-    return false;
-}
-bool IsaInteger(string & columnData )
-{
-   
-    if(FirstIsASpecialCharacter(columnData))
-    {
-        return false;
-    }
-   else if (stringIsNotAInteger(columnData))
-   {
-       return false;
-   }
-    return true;
-}
-vector<string> modifyInvalidData(vector<string>& data )
-{
-    vector<string> rowVector;
-    if (IsaInteger(data[0])==true &&IsaInteger(data[1])==true)
-    {
-        rowVector.push_back(data[0]);
-        rowVector.push_back(data[1]);
-    }
-    else
-    {
-        rowVector.push_back("Invalid");
-        rowVector.push_back("Invalid");
-    }
-    
-   return rowVector;
-}
-
-vector<vector <string> >processInvalidEntries(const vector<vector <string> >& fetchedData)
-{
-    vector<vector <string> > processedEntries;
-    for  (vector<string> getRow:fetchedData)
-    {
-        
-         vector<string> rowData = modifyInvalidData(getRow);
-         if (rowData.size()==2)
-         {
-              processedEntries.push_back(rowData);
-         }
-         else
-         {
-             cout<<"Data Missing"<<endl;
-             exit(0);
-         }
-         
-    }
-    return processedEntries;
-}
-bool checkProcessedRowDataIsAInvalidEntry (const vector<vector <string> >& row,int i)
-{
-    if(row[i][0]=="Invalid"&&row[i][1]=="Invalid")
-    {
-        return true;
-    }
-    return false;
-}
 void printProcessedData(vector<vector <string> >& processedData)
 {
     for (unsigned int i=0;i<processedData.size();i++)
@@ -158,7 +38,8 @@ vector<vector <string> > readData(const string& filename)
 }
 
 int main()
-{
+{ 
+ 
   vector<vector<string>>fetchedData=readData("data.csv");
   vector<vector<string>> processedData = processInvalidEntries(fetchedData);
   printProcessedData(processedData);
