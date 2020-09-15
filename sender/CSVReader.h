@@ -33,11 +33,15 @@ vector<vector <string> > CSVReader::openAndRead()
     vector<vector <string> > dataList;
     string line;
     vector<string> rowData;
-    file.open(fileName, ios::in);
     try
-    { 
-        if (file) 
-        {
+    {
+        file.open(fileName, ios::in);
+    }
+    catch (exception &ex)
+    {
+       displayNoFileError(ex);
+    }
+    
               while (getline(file, line))
               {
 
@@ -49,19 +53,11 @@ vector<vector <string> > CSVReader::openAndRead()
 
             }
            
-        }
-        else
-        {
-            {
-                 throw runtime_error("Could not open file");
-            }
-        }
         
-    }
-    catch (exception &ex)
-    {
-       displayNoFileError(ex);
-    }
+       
+        
+    
+   
         file.close();
    
    return dataList;
