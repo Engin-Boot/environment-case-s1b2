@@ -3,6 +3,8 @@
 #include <string>
 #include <fstream>
 #include<sstream>
+#include<stdexcept>
+#include<exception>
 
 using namespace std;
 
@@ -14,47 +16,65 @@ public:
   
    explicit CSVReader(const string& filename, const string& delim = ",") : fileName(filename), delimeter(delim) { }
 
-    vector<vector <string> >readAndParse();
+    vector<vector <string> >openAndRead();
+    vector<string> parseLine(stringstream & s);
   
 };
 
 
 
-vector<vector <string> > CSVReader::readAndParse()
+vector<vector <string> > CSVReader::openAndRead()
 {
     fstream file;
     vector<vector <string> > dataList;
-    string line ="";
-    string data ="";
-    file.open(fileName);
-     /*try{ if (!file) 
+    string line;
+    vector<string> rowData;
+    file.open(fileName, ios::in);
+    try
+    { 
+        if (file) 
         {
-            throw runtime_error("Could not open file");
+              while (getline(file, line))
+              {
+
+                  stringstream str(line);
+                  rowData.clear();
+                  rowData =parseLine(str);
+                  dataList.push_back(rowData);
+                                                                          /* while (getline(str, data, ','))
+                                                                             {
+                                                                                      rowData.push_back(data);
+                                                                            }*/
+                                                                            
+                                                                            
+
+            }
+           
         }
-     }*/
-   
- 
-   /* catch (std::exception &ex)
+        else
+        {
+            {
+                 throw runtime_error("Could not open file");
+            }
+        }
+        
+    }
+    catch (std::exception &ex)
     {
        cout<<ex.what()<<endl;
        exit(0);
-    }*/
-    
-    
-     while (getline(file, line))
-    {
-       stringstream str(line);
-       vector<string> rowData;
-        while (getline(str, data, ','))
-        {
-            rowData.push_back(data);
-        }
-        dataList.push_back(rowData);
-
     }
-
-    file.close();
+        file.close();
    
    return dataList;
 }
 
+vector <string> CSVReader::parseLine(stringstream& s)
+{
+        string word;
+		vector<string> row;
+		while (getline(s, word, ',')) {
+			row.push_back(word);
+		}
+		return row;
+}
