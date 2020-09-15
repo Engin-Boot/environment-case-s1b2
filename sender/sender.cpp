@@ -15,7 +15,8 @@ void printProcessedData(vector<vector <string> >& processedData)
        
            if (checkProcessedRowDataIsAInvalidEntry(processedData,i))
            {
-                this_thread::sleep_for(chrono::seconds(5) );
+
+                this_thread::sleep_for(chrono::seconds(0) );
            }
            else
            {
@@ -34,7 +35,7 @@ int main()
 { 
  
   vector<vector<string>>fetchedData=readData("data.csv");
-  vector<vector<string>> processedData = processInvalidEntries(fetchedData);
+  vector<vector<string>> processedData = processTheEntries(fetchedData);
   printProcessedData(processedData);
    return 0;
 }

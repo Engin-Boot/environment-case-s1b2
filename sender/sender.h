@@ -5,6 +5,10 @@
 #include<iterator>
 using namespace std;
 vector <vector <string> >readData(const string& path);
+
+
+
+
 bool checkProcessedRowDataIsAInvalidEntry (const vector<vector <string> >& row,int i)
 {
     if(row[i][0]=="Invalid"&&row[i][1]=="Invalid")
@@ -13,6 +17,12 @@ bool checkProcessedRowDataIsAInvalidEntry (const vector<vector <string> >& row,i
     }
     return false;
 }
+
+
+
+
+
+//***********************To check if the string is a float or not****************************
 bool FirstIsASpecialCharacter(string& s)
 {
     if(isdigit(s[0]))
@@ -25,13 +35,14 @@ bool IsNotADot(list<char>& receivedlist)
 {
     auto itr = receivedlist.begin();
     char dot=*itr;
+    bool k = true;
     if (dot=='.')
     {
-        return false;
+       k=false;
     }
-    return true;
+    return k;
 }
-bool stringIsNotAFloat(string& s)
+bool hasSpecialCharacterInBetween(string& s)
 {
     list<char> temp;
     for (unsigned int i=0;i<s.size();i++)
@@ -45,11 +56,12 @@ bool stringIsNotAFloat(string& s)
     {
         return true;
     }
-    else if (temp.size()==1)
+    else if(temp.size()==1)
     {
         return IsNotADot(temp);
     }
     return false;
+   
 }
 bool IsaFloat(string & columnData )
 {
@@ -58,12 +70,15 @@ bool IsaFloat(string & columnData )
     {
         return false;
     }
-   else if (stringIsNotAFloat(columnData))
+   else if (hasSpecialCharacterInBetween(columnData))
    {
        return false;
    }
     return true;
 }
+
+//******************Modifying invalid entries into specific format and retain valid entries as it is ********************//
+
 vector<string> modifyInvalidData(vector<string>& data )
 {
     vector<string> rowVector;
@@ -80,7 +95,9 @@ vector<string> modifyInvalidData(vector<string>& data )
     
    return rowVector;
 }
-vector<vector <string> >processInvalidEntries(vector<vector <string> >& fetchedData)
+
+//*************process the entries converting invalid entries to specific format*****************
+vector<vector <string> >processTheEntries( vector<vector <string> >& fetchedData)
 {
     vector<vector <string> > processedEntries;
     for  (vector<string> getRow:fetchedData)
