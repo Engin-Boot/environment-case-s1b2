@@ -30,8 +30,8 @@ vector<vector <string> > CSVReader::openAndRead()
     string line;
     vector<string> rowData;
     file.open(fileName, ios::in);
-    try 
-    {
+    //try 
+    //{
     if(file)
     {    
      while (getline(file, line))
@@ -42,16 +42,16 @@ vector<vector <string> > CSVReader::openAndRead()
             dataList.push_back(rowData);
         }
     }    
-    else
-        {
-            throw runtime_error("could not open file:wrong filename given");
+   // else
+   //     {
+   //         throw runtime_error("could not open file:wrong filename given");
             
-        }
-    }
-    catch (exception & ex)
+   //    }
+   // }
+    /*catch (exception & ex)
     {
         cout<<ex.what()<<endl;
-    }
+    }*/
     file.close();
     return dataList;
 }
