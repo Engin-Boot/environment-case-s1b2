@@ -10,18 +10,18 @@ string tempreature="tempreature",humidity=humidity;
 TEST_CASE("raise error and warning when tempreature is greater than alert level")
 {   
     REQUIRE(check.checkforhighvalues(42,tempreature,40,37)==("ALERT!!tempreature is very high"));
-    REQUIRE(check.checkforhighvalues(38,tempreature,40,37)==("WARNING!!tempreature is high"));
+    REQUIRE(check.checkforhighvalues(38,tempreature,40,37)==("Warning!!tempreature is high"));
     
 }
 TEST_CASE("raise error and warning when tempreature is lower than alert level")
 {
      REQUIRE(check.checkforlowvalues(-0.92,tempreature,0,4)==("ALERT!!tempreature is very low"));
-     REQUIRE(check.checkforlowvalues(2,tempreature,0,4)==("WARNING!!tempreature is low"));
+     REQUIRE(check.checkforlowvalues(2,tempreature,0,4)==("Warning!!tempreature is low"));
 }
 TEST_CASE("raise error and warning when humidity is greater than alert level")
 {
     REQUIRE(check.checkforhighvalues(93,humidity,90,70)==("ALERT!!humidity is very high"));
-    REQUIRE(check.checkforhighvalues(73,humidity,90,70)==("WARNING!!humidity is high"));
+    REQUIRE(check.checkforhighvalues(73,humidity,90,70)==("Warning!!humidity is high"));
 }
 TEST_CASE("Do nothing when tempreature is in normal conditions")
 {      
