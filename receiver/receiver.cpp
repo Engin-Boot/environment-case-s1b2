@@ -23,7 +23,7 @@ using namespace std;
 	 }
      else if(value<LowValueForWarning)
      {
-     	s="Warning!!"+ValueName+" is "+"very low";
+     	s="Warning!!"+ValueName+" is "+"low";
 	 }
      return s;
   }
