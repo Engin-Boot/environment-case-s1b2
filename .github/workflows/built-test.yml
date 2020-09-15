@@ -28,7 +28,10 @@ jobs:
       
     - name: pipelining
       run: ./Sender|./Receiver
-    
+      
+    - name: build receiver-test
+      run: g++ -Wall -Wextra --coverage -o receiver-test receiver-test/receiver-test.cpp receiver/receiver.cpp
+      
     - name: coverage report sender
       run: gcov -r sender.cpp
       
