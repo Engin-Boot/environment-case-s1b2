@@ -30,8 +30,8 @@ vector<vector <string> > CSVReader::openAndRead()
     string line;
     vector<string> rowData;
     file.open(fileName, ios::in);
-    if(file)
-    {    
+    //if(file)
+   // {    
      while (getline(file, line))
         {
             stringstream str(line);
@@ -39,12 +39,12 @@ vector<vector <string> > CSVReader::openAndRead()
             rowData =parseLine(str);
             dataList.push_back(rowData);
         }
-    }    
-    else
-        {
-            cout<<"RUNTIME_ERROR:COULD NOT OPEN FILE"<<endl;
+  //  }    
+  //  else
+       // {
+       //     cout<<"RUNTIME_ERROR:COULD NOT OPEN FILE"<<endl;
             
-        }
+      //  }
     file.close();
     return dataList;
 }
