@@ -29,7 +29,7 @@ jobs:
     - name: pipelining
       run: ./Sender|./Receiver
     - name: build sender-test
-      run:  g++ -Wall -Wextra --coverage -o Sender-test sender_test/sender-test.cpp sender/sender.cpp
+      run:  g++ -Wall -Wextra --coverage -o Sender-test sender-test/sender-test.cpp sender/sender.cpp
       
     - name: build receiver-test
       run: g++ -Wall -Wextra --coverage -o Receiver-test receiver-test/receiver-test.cpp receiver/receiver.cpp
@@ -45,6 +45,8 @@ jobs:
       
     - name: receiver coverage report
       run: gcov -r main.cpp receiver.cpp receiver.h
-    
+    - name: sender-test coverage report
+      run: gcov -r sender-test.cpp sender.cpp sender.h
+      
     - name: receiver-test coverage report
       run: gcov -r receiver-test.cpp receiver.cpp receiver.h
