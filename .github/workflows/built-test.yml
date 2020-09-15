@@ -32,9 +32,14 @@ jobs:
     - name: build receiver-test
       run: g++ -Wall -Wextra --coverage -o Receiver-test receiver-test/receiver-test.cpp receiver/receiver.cpp
       
+    - name: run receiver test
+      run: ./receiver-test
+      
     - name: coverage report sender
       run: gcov -r sender.cpp
       
-    - name: coverage report receiver
-      run: gcov -r receiver.cpp
-
+    - name: receiver coverage report
+      run: gcov -r main.cpp receiver.cpp receiver.h
+    
+    - name: receiver-test coverage report
+      run: gcov -r receiver-test.cpp receiver.cpp receiver.h
