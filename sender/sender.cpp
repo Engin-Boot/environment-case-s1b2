@@ -40,7 +40,7 @@ vector<vector <string> > readData(const string& filename)
 int main()
 { 
  
-  vector<vector<string>>fetchedData=readData("data.csv");
+  vector<vector<string>>fetchedData=readData("data1.csv");
   vector<vector<string>> processedData = processInvalidEntries(fetchedData);
   printProcessedData(processedData);
    return 0;
