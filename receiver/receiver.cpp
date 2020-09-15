@@ -47,26 +47,5 @@ using namespace std;
            cout<<messageForTem<<endl;
            cout<<messageForHumi<<endl;
         }
-void extractValuesFromStringAndSendValuesForChecking(string line) 
-{ 
-    stringstream ss(line); 
-        while(ss.good())
-        {
-         	string tempreaturestring,humiditystring;
-         	getline(ss,tempreaturestring,' ');
-         	getline(ss,humiditystring,'\n');
-         	CheckForWarningAndAlert obj(stof(tempreaturestring),stof(humiditystring));
-        } 
-}
-       
- int main()
-{    
-    
-          string line="";
-    while(getline(cin,line))
-    {   
-        extractValuesFromStringAndSendValuesForChecking(line);
-    }
-    return 0;
-}
+
 
