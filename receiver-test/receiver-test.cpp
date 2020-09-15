@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
 
 #include<bits/stdc++.h>
-#include "catch.hpp"
-#include "receiver.h"
+#include "../AllFiles/catch.hpp"
+#include "../receiver/receiver.h"
 using namespace std;
 
 CheckValues check;
