@@ -24,7 +24,7 @@ jobs:
       run: g++ -Wall -Wextra -Werror --coverage  -o Receiver receiver/*.cpp
       
     - name: static analysis
-      run: cppcheck --suppress='*:AllFiles*' --enable=all --error--exitcode=1 ./*.cpp
+      run: cppcheck --enable=all --check-config --error-exitcode=1 .
       
     - name: pipelining
       run: ./Sender|./Receiver
