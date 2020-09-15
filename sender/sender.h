@@ -1,6 +1,8 @@
 #include<iostream>
 #include <vector>
 #include <string>
+#include<list>
+#include<iterator>
 using namespace std;
 vector <vector <string> >readData(const string& path);
 bool checkProcessedRowDataIsAInvalidEntry (const vector<vector <string> >& row,int i)
@@ -19,26 +21,44 @@ bool FirstIsASpecialCharacter(string& s)
     }
     return true;
 }
-bool stringIsNotAInteger(string& s)
+bool IsNotADot(list<char>& receivedlist)
 {
+    auto itr = receivedlist.begin();
+    char dot=*itr;
+    if (dot=='.')
+    {
+        return false;
+    }
+    return true;
+}
+bool stringIsNotAFloat(string& s)
+{
+    list<char> temp;
     for (unsigned int i=0;i<s.size();i++)
     {
-        if (!isdigit(s[i]))
-         {
-             return true;
-         }
-
+        if(!isdigit(s[i]))
+        {
+            temp.push_back(s[i]);
+        }
+    }
+    if (temp.size()>1)
+    {
+        return true;
+    }
+    else if (temp.size()==1)
+    {
+        return IsNotADot(temp);
     }
     return false;
 }
-bool IsaInteger(string & columnData )
+bool IsaFloat(string & columnData )
 {
    
     if(FirstIsASpecialCharacter(columnData))
     {
         return false;
     }
-   else if (stringIsNotAInteger(columnData))
+   else if (stringIsNotAFloat(columnData))
    {
        return false;
    }
@@ -47,7 +67,7 @@ bool IsaInteger(string & columnData )
 vector<string> modifyInvalidData(vector<string>& data )
 {
     vector<string> rowVector;
-    if (IsaInteger(data[0])==true &&IsaInteger(data[1])==true)
+    if (IsaFloat(data[0])==true &&IsaFloat(data[1])==true)
     {
         rowVector.push_back(data[0]);
         rowVector.push_back(data[1]);
@@ -60,7 +80,7 @@ vector<string> modifyInvalidData(vector<string>& data )
     
    return rowVector;
 }
-vector<vector <string> >processInvalidEntries(const vector<vector <string> >& fetchedData)
+vector<vector <string> >processInvalidEntries(vector<vector <string> >& fetchedData)
 {
     vector<vector <string> > processedEntries;
     for  (vector<string> getRow:fetchedData)
@@ -68,8 +88,6 @@ vector<vector <string> >processInvalidEntries(const vector<vector <string> >& fe
         
          vector<string> rowData = modifyInvalidData(getRow);
          processedEntries.push_back(rowData);
-        
-         
     }
     return processedEntries;
 }

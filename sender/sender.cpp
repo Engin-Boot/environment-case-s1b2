@@ -9,38 +9,31 @@ using namespace std;
 
 void printProcessedData(vector<vector <string> >& processedData)
 {
+   
     for (unsigned int i=0;i<processedData.size();i++)
     {
-        
+       
            if (checkProcessedRowDataIsAInvalidEntry(processedData,i))
            {
-                this_thread::sleep_for(chrono::seconds(10) );
+                this_thread::sleep_for(chrono::seconds(5) );
            }
            else
            {
                cout<<processedData[i][0]<<" "<<processedData[i][1]<<endl;
            }
-           
-         /* for(int j=0;j<processedData[i].size();j++)
-          {
-              cout<<processedData[i][j]<<",";
-          }*/
-    this_thread::sleep_for(chrono::seconds(5) );
     }
 }
 vector<vector <string> > readData(const string& filename)
 {
-     CSVReader reader(filename,",");
-     vector<vector <string> > fetchedData = reader.openAndRead();
-     //vector<vector <string> > processedData = processInvalidEntries(fetchedData);
-     //printProcessedData(processedData);
+    CSVReader reader(filename,",");
+    vector<vector <string> > fetchedData = reader.openAndRead();
     return fetchedData;
 }
 
 int main()
 { 
  
-  vector<vector<string>>fetchedData=readData("data1.csv");
+  vector<vector<string>>fetchedData=readData("data.csv");
   vector<vector<string>> processedData = processInvalidEntries(fetchedData);
   printProcessedData(processedData);
    return 0;
