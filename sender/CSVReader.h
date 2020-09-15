@@ -21,11 +21,7 @@ public:
   
 };
 
-void displayNoFileError(exception &ex)
-{
-    cout<<ex.what()<<endl;
-       exit(0);
-}
+
 
 vector<vector <string> > CSVReader::openAndRead()
 {
@@ -33,34 +29,24 @@ vector<vector <string> > CSVReader::openAndRead()
     vector<vector <string> > dataList;
     string line;
     vector<string> rowData;
-    try
-    {
-        file.open(fileName, ios::in);
-    }
-    catch (exception &ex)
-    {
-       displayNoFileError(ex);
-    }
-    
-              while (getline(file, line))
-              {
-
-                  stringstream str(line);
-                  rowData.clear();
-                  rowData =parseLine(str);
-                  dataList.push_back(rowData);
-                                                                            
-
-            }
-           
-        
-       
-        
-    
-   
-        file.close();
-   
-   return dataList;
+    file.open(fileName, ios::in);
+    if(file)
+    {    
+     while (getline(file, line))
+        {
+            stringstream str(line);
+            rowData.clear();
+            rowData =parseLine(str);
+            dataList.push_back(rowData);
+        }
+    }    
+    else
+        {
+            cout<<"RUNTIME_ERROR:COULD NOT OPEN FILE"<<endl;
+            
+        }
+    file.close();
+    return dataList;
 }
 
 vector <string> CSVReader::parseLine(stringstream& s)

@@ -31,7 +31,7 @@ void printProcessedData(vector<vector <string> >& processedData)
 vector<vector <string> > readData(const string& filename)
 {
      CSVReader reader(filename,",");
-     vector<vector <string> > fetchedData = reader.readAndParse();
+     vector<vector <string> > fetchedData = reader.openAndRead();
      //vector<vector <string> > processedData = processInvalidEntries(fetchedData);
      //printProcessedData(processedData);
     return fetchedData;
@@ -40,7 +40,7 @@ vector<vector <string> > readData(const string& filename)
 int main()
 { 
  
-  vector<vector<string>>fetchedData=readData("data.csv");
+  vector<vector<string>>fetchedData=readData("data1.csv");
   vector<vector<string>> processedData = processInvalidEntries(fetchedData);
   printProcessedData(processedData);
    return 0;
